@@ -1,0 +1,19 @@
+def get_all_files(path):
+    '''
+    获取指定目录下的所有文件和文件夹  包括所有子目录
+    返回所有文件名（包括目录），所有目录名，所有文件名（不包括目录）
+    '''
+    f = os.walk(path) # f是一个生成器
+    all_files = []
+    dir_files = []
+    file_files = []
+    for dirpath,dirnames,filenames in f:
+        for dirname in dirnames:
+            all_files.append(os.path.join(dirpath,dirname))
+            dir_files.append(os.path.join(dirpath,dirname))
+        for filename in filenames:
+            all_files.append(os.path.join(dirpath,filename))
+            file_files.append(os.path.join(dirpath,filename))
+    return all_files,dir_files,file_files
+
+all_files,dir_files,file_files = get_all_files('F:\python_learning')
